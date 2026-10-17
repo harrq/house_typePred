@@ -1,9 +1,17 @@
 from fastapi import FastAPI
 from pydantic import BaseModel,Field
 from typing import Literal
-import joblib
+
 import pandas as pd
 from fastapi.middleware.cors import CORSMiddleware
+
+from pathlib import Path
+import joblib
+
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "House_Pipeline.pkl"
+
+model = joblib.load(MODEL_PATH)
 
 app=FastAPI()
 
@@ -13,8 +21,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-model=joblib.load("House_Pipeline.pkl")
 
 class user_itp(BaseModel):
     latitude: float = Field(..., ge=-90, le=90, description="Latitude coordinate")

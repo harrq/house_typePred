@@ -1,5 +1,5 @@
 // Set this to your FastAPI server origin. Do not include /predict at the end.
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://house-typepred.onrender.com";
 const PREDICT_URL = `${API_BASE_URL}/predict`;
 const form = document.getElementById("predictionForm");
 const submitButton = document.getElementById("submitButton");
